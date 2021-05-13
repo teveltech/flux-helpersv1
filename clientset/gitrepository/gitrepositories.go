@@ -38,7 +38,7 @@ func (c *gitRepositoryClient) List(opts metav1.ListOptions) (*sourcev1.GitReposi
 	return &result, err
 }
 
-func (c *gitRepositoryClient) Get(name string, opts metav1.GetOptions) (*sourcev1.GitRepository, error) {
+func (c *gitRepositoryClient) Get(name string) (*sourcev1.GitRepository, error) {
 	result := sourcev1.GitRepository{}
 	err := c.restClient.
 		Get().
@@ -67,13 +67,13 @@ func (c *gitRepositoryClient) Create(gitRepository *sourcev1.GitRepository) (*so
 
 // Update takes the representation of a gitRepo and updates it.
 // Returns the server's representation of the gitRepo, and an error, if there is any.
-func (c *gitRepositoryClient) Update(gitRepo *sourcev1.GitRepository, opts metav1.UpdateOptions) (result *sourcev1.GitRepository, err error) {
+func (c *gitRepositoryClient) Update(gitRepo *sourcev1.GitRepository) (result *sourcev1.GitRepository, err error) {
 	result = &sourcev1.GitRepository{}
 	err = c.restClient.Put().
 		Namespace(c.ns).
 		Resource("gitrepositories").
 		Name(gitRepo.Name).
-		VersionedParams(&opts, scheme.ParameterCodec).
+		// VersionedParams(&opts, scheme.ParameterCodec).
 		Body(gitRepo).
 		Do(context.TODO()).
 		Into(result)
