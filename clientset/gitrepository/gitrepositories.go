@@ -45,7 +45,7 @@ func (c *gitRepositoryClient) Get(name string, opts metav1.GetOptions) (*sourcev
 		Namespace(c.ns).
 		Resource("gitrepositories").
 		Name(name).
-		VersionedParams(&opts, scheme.ParameterCodec).
+		// VersionedParams(&opts, scheme.ParameterCodec).
 		Do(context.TODO()).
 		Into(&result)
 

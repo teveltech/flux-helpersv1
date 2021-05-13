@@ -6,6 +6,7 @@ import (
 	"fmt"
 	gitRepositoryClient "github.com/teveltech/flux-helpers/clientset/gitrepository"
 	kustomizationClient "github.com/teveltech/flux-helpers/clientset/kustomization"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/client-go/tools/clientcmd"
@@ -23,7 +24,7 @@ func main() {
 	var config *rest.Config
 	var err error
 
-	kubeconfig = "/Users/orshefi/workspace/kubeconfig_itzik"
+	kubeconfig = "/etc/rancher/k3s/k3s.yaml"
 
 	if kubeconfig == "" {
 		log.Printf("using in-cluster configuration")
@@ -65,6 +66,12 @@ func main() {
 	})
 
 	gitRepositoriesInformer := gitRepositoryClient.NewInformer(gitClientSet, "default")
+
+	gr, err := gitClientSet.GitRepository("default").Get("default", metav1.GetOptions{})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(gr)
 
 	gitRepositoriesInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc: func(obj interface{}) {
