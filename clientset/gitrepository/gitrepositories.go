@@ -20,12 +20,12 @@ type GitRepositoryInterface interface {
 	// ...
 }
 
-type gitRepositoryClient struct {
+type GitRepositoryClient struct {
 	restClient rest.Interface
 	ns         string
 }
 
-func (c *gitRepositoryClient) List(opts metav1.ListOptions) (*sourcev1.GitRepositoryList, error) {
+func (c *GitRepositoryClient) List(opts metav1.ListOptions) (*sourcev1.GitRepositoryList, error) {
 	result := sourcev1.GitRepositoryList{}
 	err := c.restClient.
 		Get().
@@ -38,7 +38,7 @@ func (c *gitRepositoryClient) List(opts metav1.ListOptions) (*sourcev1.GitReposi
 	return &result, err
 }
 
-func (c *gitRepositoryClient) Get(name string) (*sourcev1.GitRepository, error) {
+func (c *GitRepositoryClient) Get(name string) (*sourcev1.GitRepository, error) {
 	result := sourcev1.GitRepository{}
 	err := c.restClient.
 		Get().
@@ -52,7 +52,7 @@ func (c *gitRepositoryClient) Get(name string) (*sourcev1.GitRepository, error) 
 	return &result, err
 }
 
-func (c *gitRepositoryClient) Create(gitRepository *sourcev1.GitRepository) (*sourcev1.GitRepository, error) {
+func (c *GitRepositoryClient) Create(gitRepository *sourcev1.GitRepository) (*sourcev1.GitRepository, error) {
 	result := sourcev1.GitRepository{}
 	err := c.restClient.
 		Post().
@@ -67,7 +67,7 @@ func (c *gitRepositoryClient) Create(gitRepository *sourcev1.GitRepository) (*so
 
 // Update takes the representation of a gitRepo and updates it.
 // Returns the server's representation of the gitRepo, and an error, if there is any.
-func (c *gitRepositoryClient) Update(gitRepo *sourcev1.GitRepository) (result *sourcev1.GitRepository, err error) {
+func (c *GitRepositoryClient) Update(gitRepo *sourcev1.GitRepository) (result *sourcev1.GitRepository, err error) {
 	result = &sourcev1.GitRepository{}
 	err = c.restClient.Put().
 		Namespace(c.ns).
@@ -81,7 +81,7 @@ func (c *gitRepositoryClient) Update(gitRepo *sourcev1.GitRepository) (result *s
 }
 
 // Patch applies the patch and returns the patched configMap.
-func (c *gitRepositoryClient) Patch(name string, pt types.PatchType, data []byte, opts metav1.PatchOptions, subresources ...string) (result *sourcev1.GitRepository, err error) {
+func (c *GitRepositoryClient) Patch(name string, pt types.PatchType, data []byte, opts metav1.PatchOptions, subresources ...string) (result *sourcev1.GitRepository, err error) {
 	result = &sourcev1.GitRepository{}
 	err = c.restClient.Patch(pt).
 		Namespace(c.ns).
@@ -95,7 +95,7 @@ func (c *gitRepositoryClient) Patch(name string, pt types.PatchType, data []byte
 	return
 }
 
-func (c *gitRepositoryClient) Watch(opts metav1.ListOptions) (watch.Interface, error) {
+func (c *GitRepositoryClient) Watch(opts metav1.ListOptions) (watch.Interface, error) {
 	opts.Watch = true
 	return c.restClient.
 		Get().

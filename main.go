@@ -6,7 +6,6 @@ import (
 	"fmt"
 	gitRepositoryClient "github.com/teveltech/flux-helpers/clientset/gitrepository"
 	kustomizationClient "github.com/teveltech/flux-helpers/clientset/kustomization"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/client-go/tools/clientcmd"
@@ -67,11 +66,17 @@ func main() {
 
 	gitRepositoriesInformer := gitRepositoryClient.NewInformer(gitClientSet, "default")
 
-	gr, err := gitClientSet.GitRepository("default").Get("default", metav1.GetOptions{})
+	gr, err := gitClientSet.GitRepository("default").Get("default")
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(gr)
+	gr.Spec.Suspend = false
+	gr.Spec.Reference.Commit = "0d7d646226803d9efbd9f5e1399d2b76532e5d76"
+	result, err := gitClientSet.GitRepository("default").Update(gr)
+	if err != nil {
+		panic(err)
+	}
+	println(result.Status.Artifact.Revision)
 
 	gitRepositoriesInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc: func(obj interface{}) {

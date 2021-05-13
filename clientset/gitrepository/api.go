@@ -35,7 +35,7 @@ func NewForConfig(c *rest.Config) (*ExampleV1Alpha1Client, error) {
 }
 
 func (c *ExampleV1Alpha1Client) GitRepository(namespace string) GitRepositoryInterface {
-	return &gitRepositoryClient{
+	return &GitRepositoryClient{
 		restClient: c.restClient,
 		ns:         namespace,
 	}
