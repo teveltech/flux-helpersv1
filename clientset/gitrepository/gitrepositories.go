@@ -12,9 +12,9 @@ import (
 
 type GitRepositoryInterface interface {
 	List(opts metav1.ListOptions) (*sourcev1.GitRepositoryList, error)
-	Get(name string, options metav1.GetOptions) (*sourcev1.GitRepository, error)
+	Get(name string) (*sourcev1.GitRepository, error)
 	Create(*sourcev1.GitRepository) (*sourcev1.GitRepository, error)
-	Update(gitRepo *sourcev1.GitRepository, opts metav1.UpdateOptions) (result *sourcev1.GitRepository, err error)
+	Update(gitRepo *sourcev1.GitRepository) (result *sourcev1.GitRepository, err error)
 	Patch(name string, pt types.PatchType, data []byte, opts metav1.PatchOptions, subresources ...string) (result *sourcev1.GitRepository, err error)
 	Watch(opts metav1.ListOptions) (watch.Interface, error)
 	// ...
