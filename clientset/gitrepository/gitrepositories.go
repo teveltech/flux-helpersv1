@@ -48,7 +48,8 @@ func (c *GitRepositoryClient) Get(name string) (*sourcev1.GitRepository, error) 
 		// VersionedParams(&opts, scheme.ParameterCodec).
 		Do(context.TODO()).
 		Into(&result)
-
+	result.Kind = "GitRepository"
+	result.APIVersion = "source.toolkit.fluxcd.io/v1beta1"
 	return &result, err
 }
 
