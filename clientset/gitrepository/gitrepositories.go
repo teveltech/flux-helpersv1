@@ -2,7 +2,8 @@ package gitrepository
 
 import (
 	"context"
-	sourcev1 "github.com/fluxcd/source-controller/api/v1beta2"
+
+	sourcev1 "github.com/fluxcd/source-controller/api/v1beta1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/apimachinery/pkg/watch"
@@ -49,7 +50,7 @@ func (c *GitRepositoryClient) Get(name string) (*sourcev1.GitRepository, error) 
 		Do(context.TODO()).
 		Into(&result)
 	result.Kind = "GitRepository"
-	result.APIVersion = "source.toolkit.fluxcd.io/v1beta2"
+	result.APIVersion = "source.toolkit.fluxcd.io/v1beta1"
 	return &result, err
 }
 
