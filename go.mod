@@ -5,14 +5,12 @@ go 1.20.0
 require (
 	github.com/fluxcd/kustomize-controller/api v1.1.1
 	github.com/fluxcd/source-controller/api v1.1.2
-	github.com/teveltech/flux-helpersv1
 	k8s.io/apimachinery v0.28.3
 	k8s.io/client-go v0.28.3
 )
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/fluxcd/pkg/apis/acl v0.1.0 // indirect
 	github.com/fluxcd/pkg/apis/kustomize v1.1.1 // indirect
 	github.com/fluxcd/pkg/apis/meta v1.1.2 // indirect
 	github.com/go-logr/logr v1.2.4 // indirect
