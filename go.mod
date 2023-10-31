@@ -1,4 +1,4 @@
-module github.com/teveltech/flux-helpers
+module github.com/teveltech/flux-helpersv1
 
 go 1.20
 
