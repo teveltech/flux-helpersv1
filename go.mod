@@ -5,7 +5,7 @@ go 1.20.0
 require (
 	github.com/fluxcd/kustomize-controller/api v1.1.1
 	github.com/fluxcd/source-controller/api v1.1.2
-	github.com/teveltech/flux-helpers v1.0.5
+	github.com/teveltech/flux-helpersv1
 	k8s.io/apimachinery v0.28.3
 	k8s.io/client-go v0.28.3
 )
