@@ -1,6 +1,6 @@
 module github.com/teveltech/flux-helpersv1
 
-go 1.21.0
+go 1.20.0
 
 require (
 	github.com/fluxcd/kustomize-controller/api v1.1.1
